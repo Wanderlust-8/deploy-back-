@@ -6,13 +6,13 @@ const {
   getCityByName,
   bulkCreateCities,
   deleteCity,
-} = require("../controllers/cityOrigins.controllers");
+} = require("../controllers/citiescontrollers");
 
 const router = Router();
 
 router.post("/", async (req, res) => {
   try {
-    const { name, idCountry } = req.body;
+    const { name, originCity, idCountry } = req.body;
     if (!name) {
       throw new Error("Falta agregar name");
     }
@@ -21,30 +21,27 @@ router.post("/", async (req, res) => {
       throw new Error("Falta agregar idCountry ");
     }
 
-    await createCity(name, idCountry);
+    const newCity = await createCity(name, originCity, idCountry);
     return res.status(201).send("Ciudad creada satisfactoriamente");
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-
-
 router.post("/massive", async (req, res) => {
   try {
-    const citiesData= req.body;
+    const citiesData = req.body;
     if (!citiesData) {
       throw new Error("Falta agregar las ciudades");
     }
 
+   
     await bulkCreateCities(citiesData);
     return res.status(201).send("Ciudades creadas satisfactoriamente");
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
-
-
 
 router.get("/", async (req, res) => {
   try {
@@ -56,8 +53,6 @@ router.get("/", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-
-
 
 router.get("/:id", async (req, res) => {
   try {
@@ -72,7 +67,8 @@ router.get("/:id", async (req, res) => {
 });
 
 
-router.get("/cities-origins", async (req, res) => {
+
+router.get("/cities", async (req, res) => {
   try {
     const { name } = req.query;
     const city = await getCityByName(name);
@@ -85,8 +81,6 @@ router.get("/cities-origins", async (req, res) => {
   }
 });
 
-
-
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -96,11 +90,5 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-
-
-
-
-
-
 
 module.exports = router;

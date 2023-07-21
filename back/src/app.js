@@ -1,5 +1,5 @@
 const express = require("express");
-const routes = require("./routes.index.js");
+const routes = require("./routes/index.js");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require('morgan');
@@ -8,7 +8,7 @@ require('./database.js');
 
 const server = express();
 
-server.name = 'BACK';
+server.name = 'API';
 
 //midleweares
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
@@ -26,8 +26,8 @@ server.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
-// server.use(express.json());
-// server.use(express.urlencoded({ extended: false }));
+server.use(express.json());
+server.use(express.urlencoded({ extended: false }));
 
 //Routes
 server.use("/", routes);

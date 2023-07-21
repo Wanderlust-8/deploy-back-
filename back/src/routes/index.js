@@ -1,16 +1,16 @@
 const {Router} = require('express');
-const handlersPackages = require('../handlers/packages.handlers');
-const handlersTypePackages = require('../handlers/typePackages.handlers');
-const handlersAirlines = require('../handlers/airlines.handlers');
-const handlerUser = require('../handlers/users.handlers');
-const handlerComment = require('../handlers/comment.handlers');
-const handlersContinents = require("../handlers/continents.handlers");
-const handlersCountries = require("../handlers/countries.handlers");
-const handlersCities = require("../handlers/cities.handlers");
-const handlersActivity = require("../handlers/activity.handlers");
-const handlersHotels = require("../handlers/hotel.handlers");
-const handlersAdmins = require("../handlers/admin.handlers");
-const handlersCityOrigins = require("../handlers/cityOrigins.handlers");
+const handlersPackages = require('../handlers/packageshandlers');
+const handlersTypePackages = require('../handlers/typePackageshandlers');
+const handlersAirlines = require('../handlers/airlineshandlers');
+const handlerUser = require('../handlers/usershandlers');
+const handlerComment = require('../handlers/commenthandlers');
+const handlersContinents = require("../handlers/continentshandlers");
+const handlersCountries = require("../handlers/countrieshandlers");
+const handlersCities = require("../handlers/citieshandlers");
+const handlersActivity = require("../handlers/activityhandlers");
+const handlersHotels = require("../handlers/hotelhandlers");
+const handlersAdmins = require("../handlers/adminhandlers");
+const handlersCityOrigins = require("../handlers/cityOriginshandlers");
 
 const router = Router();
 
@@ -26,7 +26,6 @@ router.use("/cities", handlersCities);
 router.use("/cities-origins", handlersCityOrigins);
 router.use("/activity", handlersActivity);
 router.use("/hotels", handlersHotels);
-
 
 
 

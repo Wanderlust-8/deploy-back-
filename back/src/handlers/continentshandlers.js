@@ -6,7 +6,7 @@ const {
   getContinentsById,
   deleteContinent,
   bulkCreateContinent,
-} = require("../controllers/continents.controllers");
+} = require("../controllers/continentscontrollers");
 
 const router = Router();
 

@@ -6,7 +6,7 @@ const {
   getCountryByName,
   bulkCreateCountries,
   deleteCountry,
-} = require("../controllers/countries.controllers");
+} = require("../controllers/countriescontrollers");
 
 const router = Router();
 

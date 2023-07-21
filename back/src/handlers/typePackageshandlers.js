@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {addTypePackages, getTypePackages} = require('../controllers/typePackages.controllers');
+const {addTypePackages, getTypePackages} = require('../controllers/typePackagescontrollers');
 
 const router = Router();
 

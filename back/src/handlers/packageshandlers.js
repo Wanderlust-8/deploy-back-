@@ -3,14 +3,10 @@ const {addPackages,
       viewPackages,
       getPackageById,
       searchPackages,
-      addMassivePackages} = require('../controllers/packages.controllers');
+      addMassivePackages} = require('../controllers/packagescontrollers');
 const router = Router();
 
 //handler para busqueda de paquetes. si se agrega un query de busqueda ejecuta searchPackages
-router.get("/", (req, res) => {
-    res.status(200).send("Hola estoy funcionando")
-})
-
 router.get('/', async(req, res) => {
    const search = req.query.title;
    try {
