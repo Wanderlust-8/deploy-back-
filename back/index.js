@@ -8,7 +8,7 @@ const { conn } = require("./src/database");
 require('dotenv').config();
 require('./src/database.js');
 
-server.name = 'API';
+server.name = 'BACK';
 
 //midleweares
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
