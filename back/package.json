@@ -20,6 +20,7 @@
     "pg": "^8.11.1",
     "pg-hstore": "^2.3.4",
     "postgres": "^3.3.5",
-    "sequelize": "^6.32.1"
+    "sequelize": "^6.32.1",
+    "vercel": "^31.0.4"
   }
 }
