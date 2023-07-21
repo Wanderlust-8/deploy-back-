@@ -1,10 +1,12 @@
 const express = require("express");
 const server = express();
-const routes = require("./routes/index.routes");
+const routes = require("./src/routes/index.routes");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const { conn } = require("../src/database");
+const { conn } = require("./src/database");
 require('dotenv').config();
+
+server.name = 'API';
 
 //midleweares
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
