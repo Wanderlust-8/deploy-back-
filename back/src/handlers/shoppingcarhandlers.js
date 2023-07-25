@@ -5,7 +5,7 @@ const {addShoppingCar,
        deleteItemsShoppingCar,
        getShoppingCarById,
        getAllShoppingCar,
-       emptyShoppingCar } = require('../controllers/shoppingcarcontrollers');
+       emptyShoppingCar } = require('../controllers/shoppingCarcontrollers');
 
 const router = Router();
 
