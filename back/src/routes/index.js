@@ -11,6 +11,7 @@ const handlersActivity = require("../handlers/activityhandlers");
 const handlersHotels = require("../handlers/hotelhandlers");
 const handlersAdmins = require("../handlers/adminhandlers");
 const handlersCityOrigins = require("../handlers/cityOriginshandlers");
+const handlersShoppingCar = require('../handlers/shoppingCarHandlers');
 
 const router = Router();
 
@@ -26,6 +27,7 @@ router.use("/cities", handlersCities);
 router.use("/cities-origins", handlersCityOrigins);
 router.use("/activity", handlersActivity);
 router.use("/hotels", handlersHotels);
+router.use('/shoppingCar', handlersShoppingCar);
 
 
 

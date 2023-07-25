@@ -17,6 +17,8 @@ const UserModels = require("./models/User");
 const CommentModels = require("./models/comment");
 const AdminModels = require("./models/Admin");
 const CityOriginModels = require("./models/CityOrigin");
+const ShoppingCarModels = require("./models/ShoppingCar");
+const ItemsShoppingCarModels = require("./models/ItemsShoppingCar");
 
 // const sequelize = new Sequelize(
 //   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_BASE}`,
@@ -48,6 +50,8 @@ UserModels(sequelize);
 CommentModels(sequelize);
 AdminModels(sequelize)
 CityOriginModels(sequelize);
+ShoppingCarModels(sequelize);
+ItemsShoppingCarModels(sequelize);
 
 const {
   TypePackage,
@@ -62,6 +66,8 @@ const {
   Comment,
   Admin,
   CityOrigin,
+  ShoppingCar,
+  ItemsShoppingCar,
 } = sequelize.models;
 
 // establecemos las relaciones
@@ -91,6 +97,12 @@ Activity.belongsTo(Package, { foreignKey: "idPackage", targetKey: "id" });
 User.hasMany(Comment, { foreignKey: "idUser", sourceKey: "id" });
 Comment.belongsTo(User, { foreignKey: "idPackage", targetKey: "id" });
 
+User.hasMany(ShoppingCar, { foreignKey: "idUser", sourceKey: "id"});
+ShoppingCar.belongsTo(User,{ foreignKey: 'idUser', targetKey: "id"});
+
+ShoppingCar.hasMany(ItemsShoppingCar, { foreignKey: "idShoppingCar", sourceKey: "id"});
+ItemsShoppingCar.belongsTo(ShoppingCar, { foreignKey: "idShoppingCar", targetKey: "id"});
+
 module.exports = {
   TypePackage,
   Airline,
@@ -104,5 +116,7 @@ module.exports = {
   Comment,
   Admin,
   CityOrigin,
+  ShoppingCar,
+  ItemsShoppingCar,
   conn: sequelize,
 };

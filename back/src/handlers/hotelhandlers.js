@@ -2,7 +2,10 @@ const { Router } = require('express');
 const {getHotel,
     searchNameHotel,
     createHotel,
-    getHotelById
+    getHotelById,
+    bulkCreateHotels,
+    deleteHotel,
+    updateHotel
 } = require('../controllers/hotelscontrollers');
 
 const router = Router();
@@ -44,30 +47,44 @@ try {
 }
 })
 
-
 router.post('/massive', async (req, res) => {
-    const { hoteles } = req.body;
-  
-    try {
-      const createdHotels = [];
-      for (const hotel of hoteles) {
-        const createdHotel = await createHotel(
-          hotel.name,
-          hotel.image,
-          hotel.calification,
-          hotel.stars,
-          hotel.details,
-          hotel.available,
-          hotel.idCity
-        );
-        createdHotels.push(createdHotel);
-      }
-  
-      res.status(201).json(createdHotels);
-    } catch (error) {
-      res.status(500).json({error: error.message });
+  try {
+    const hotelsData = req.body;
+    if (!hotelsData) {
+      throw new Error("Falta agregar los hoteles");
     }
+
+    await bulkCreateHotels(hotelsData);
+    return res.status(201).send("Hoteles creados satisfactoriamente");
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
   });
+
+  //Ruta para eliminar actividades
+router.delete('/delete/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+   const deleteHo = await deleteHotel(id);
+    res.status(200).json(deleteHo);
+  } catch (error) {
+    console.log('error');
+    res.status(400).send({ error: 'Delete Fail' });
+  }
+});
+
+router.put('/update/:id', async (req, res) => {
+  const { id } = req.params;
+  const newData = req.body; // Espera que los nuevos datos a actualizar se envíen en el cuerpo de la solicitud
+console.log(req.body);
+  try {
+    const updatedHo = await updateHotel(id, newData);
+    res.status(200).json(updatedHo);
+  } catch (error) {
+
+    res.status(400).send({ error: 'Update Fail' });
+  }
+});
 
 
 

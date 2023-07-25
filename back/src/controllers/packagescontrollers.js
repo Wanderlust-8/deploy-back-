@@ -6,6 +6,7 @@ const {
   Airline,
   Activity,
   Country,
+  CityOrigin
 } = require("../database");
 const { Op } = require("sequelize");
 
@@ -36,33 +37,14 @@ const addPackages = async (objeto) => {
 
   //validamos la informacion recibida
   if (
-    !idTypePackage ||
-    !title ||
-    !description ||
-    !initialDate ||
-    !finalDate ||
-    !totalLimit ||
-    !standarPrice ||
-    !promotionPrice ||
-    !duration ||
-    !originCity ||
-    !idAirline ||
-    !outboundFlight
-  ) {
-    return { message: "Datos Incompletos (1)" };
-  }
-  if (
-    !returnFlight ||
-    !image ||
-    !idContinent ||
-    !idCountry ||
-    !idCity ||
-    !idHotel
-  ) {
-    return { message: "Datos Incompletos (2)" };
-  }
-  if (!activitys || !qualification || !service) {
-    return { message: "Datos Incompletos (3)" };
+    !idTypePackage || !title || !description ||
+    !initialDate || !finalDate || !totalLimit ||
+    !standarPrice || !promotionPrice || !duration ||
+    !originCity || !idAirline || !outboundFlight ||
+    !returnFlight || !image || !idContinent ||
+    !idCountry || !idCity || !idHotel ||
+    !activitys || !qualification || !service) {
+    return { message: "Datos Incompletos " };
   }
 
   //armamos el nuevo json a subir en la BD
@@ -182,10 +164,37 @@ const addMassivePackages = async (array) => {
   return "Array de paquetes cargado";
 };
 
+//la siguiente rutina permite modificar los paquetes
+const updatePackages = async(objeto, idPackage) => {
+    const {
+       idTypePackage, title, description,
+       initialDate, finalDate, totalLimit,
+       standarPrice, promotionPrice, duration,
+       originCity, idAirline, outboundFlight,
+       returnFlight, image, qualification,
+       service, idContinent, idCountry,
+       idCity, idHotel,
+    } = objeto;   
+
+    //validamos la informacion recibida
+    if(!idTypePackage || !title || !description ||
+      !initialDate || !finalDate || !totalLimit ||
+      !standarPrice || !promotionPrice || !duration ||
+      !originCity || !idAirline || !outboundFlight ||
+      !returnFlight || !image || !idContinent ||
+      !idCountry || !idCity || !idHotel ||
+      !qualification || !service) {
+      return { message: "Datos Incompletos (3)" };
+    };
+    //actualizamos la info despues de haber validado
+    const rows = await Package.update( objeto, { where: {id: idPackage} });
+};
+
 module.exports = {
   addPackages,
   viewPackages,
   getPackageById,
   searchPackages,
   addMassivePackages,
+  updatePackages,
 };
