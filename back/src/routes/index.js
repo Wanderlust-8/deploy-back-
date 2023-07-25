@@ -11,7 +11,7 @@ const handlersActivity = require("../handlers/activityhandlers");
 const handlersHotels = require("../handlers/hotelhandlers");
 const handlersAdmins = require("../handlers/adminhandlers");
 const handlersCityOrigins = require("../handlers/cityOriginshandlers");
-const handlersShoppingCar = require("../handlers/shoppingCarhandlers");
+const handlersShoppingCar = require("../handlers/shoppingcarhandlers");
 
 const router = Router();
 
