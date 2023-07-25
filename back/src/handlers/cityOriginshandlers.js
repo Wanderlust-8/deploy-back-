@@ -6,7 +6,7 @@ const {
   getCityByName,
   bulkCreateCities,
   deleteCity,
-} = require("../controllers/cityoriginscontrollers");
+} = require("../controllers/cityOriginscontrollers");
 
 const router = Router();
 
